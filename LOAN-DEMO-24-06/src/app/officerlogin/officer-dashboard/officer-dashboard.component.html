@@ -1,0 +1,30 @@
+<div class="container mt-5">
+  <h2 class="text-center" style="margin-top: 15vh;">Borrower Application Data</h2>
+  <table class="table table-hover table-striped table-bordered">
+    <thead class="thead-dark">
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Use *ngIf to conditionally render rows -->
+      <ng-container *ngIf="loanApplications && loanApplications.length > 0">
+        <tr *ngFor="let user of loanApplications">
+          <td>{{ user.fullName }}</td>
+          <td>{{ user.emailAddress }}</td>
+          <td>
+            <button class="btn btn-primary" (click)="viewUserDetails(user.id)">View Details</button>
+          </td>
+        </tr>
+      </ng-container>
+      <!-- Handle case when loanApplications is empty -->
+      <ng-container *ngIf="!loanApplications || loanApplications.length === 0">
+        <tr>
+          <td colspan="3" class="text-center">No loan applications found</td>
+        </tr>
+      </ng-container>
+    </tbody>
+  </table>
+</div>
